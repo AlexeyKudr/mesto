@@ -1,0 +1,10 @@
+.profile__edit-button {
+    background-image: url(../../../images/pen-redactor.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: transparent;
+    width: 24px;
+    height: 24px;
+    border: 1px white solid;
+    margin: 15px 0 0 18px;
+}
