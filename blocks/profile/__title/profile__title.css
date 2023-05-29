@@ -8,3 +8,12 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+@media screen and (max-width: 747px) {
+    .profile__title {
+        font-size: 27px;
+        line-height: 33px;
+        padding-top: 26px;
+        align-self: center;
+    }
+}

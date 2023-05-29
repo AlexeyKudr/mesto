@@ -8,3 +8,12 @@
     white-space: nowrap;
     overflow: hidden;
 }
+
+@media screen and (max-width: 747px) {
+    .profile__subtitle {
+        font-size: 14px;
+        line-height: 17px;
+        padding-bottom: 36px;
+        align-self: center;
+    }
+}

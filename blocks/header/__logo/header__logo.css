@@ -1,6 +1,14 @@
 .header__logo {
-    width: 132px;
+    width: 142px;
     height: 33px;
     align-items: self-start;
     padding-bottom: 41px;
+}
+
+@media screen and (max-width: 747px) {
+    .header__logo {
+        padding-left: 27px;
+        width: 103px;
+        height: 24px;
+    }
 }

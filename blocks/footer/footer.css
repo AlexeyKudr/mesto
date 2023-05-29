@@ -1,8 +1,7 @@
 .footer {
     max-width: 880px;
+    margin: 0 auto;
+    width: 100%;
+    flex-wrap: nowrap;
     display: flex;
-    margin-top: 66px;
-    margin-bottom: 60px;
-    margin-left: auto;
-    margin-right: auto;
 }
