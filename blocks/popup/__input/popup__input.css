@@ -1,0 +1,6 @@
+.popup__input {
+    padding-bottom: 13px;
+    font-size: inherit;
+    border: 0;
+    border-bottom: 1px #545454 solid;
+  }
