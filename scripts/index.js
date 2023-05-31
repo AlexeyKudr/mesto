@@ -9,14 +9,13 @@ const profileSubTitleEl = document.querySelector('.profile__subtitle');
 
 openPopupButtonEl.addEventListener('click', function () {
   openPopup(editPopupEl);
+  nameInputEl.value = pageTitleEl.textContent;
+  inputSubTitleEl.value = profileSubTitleEl.textContent;
 });
 
 closePopupButtonEl.addEventListener('click', function () {
   closePopup(editPopupEl);
 });
-
-nameInputEl.value = pageTitleEl.textContent;
-inputSubTitleEl.value = profileSubTitleEl.textContent;
 
 editFormEl.addEventListener('submit', function (event) {
   event.preventDefault();

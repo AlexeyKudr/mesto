@@ -5,10 +5,16 @@
     padding-bottom: 41px;
 }
 
-@media screen and (max-width: 747px) {
+@media screen and (max-width: 1024px) {
     .header__logo {
         padding-left: 27px;
+    }
+}
+
+@media screen and (max-width: 747px) {
+    .header__logo {
         width: 103px;
         height: 24px;
+        padding-bottom: 31px;
     }
 }

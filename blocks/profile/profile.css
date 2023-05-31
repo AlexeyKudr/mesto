@@ -8,10 +8,15 @@
     color: white;
 }
 
+@media screen and (max-width: 1024px) {
+    .profile {
+        padding: 0 19px;
+    }
+}
+
 @media screen and (max-width: 747px) {
     .profile {
         margin: 42px auto 36px;
-        padding: 0 19px;
         flex-direction: column;
     }
 }

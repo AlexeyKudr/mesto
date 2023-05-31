@@ -4,6 +4,6 @@
     background-color: white;
     border-radius: 4%;
     margin: 0 auto;
-    width: 282px;
-    height: 361px;
+    max-width: 282px;
+    min-height: 361px;
 }
