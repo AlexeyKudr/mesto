@@ -11,3 +11,9 @@
         flex-direction: column;
     }
 }
+
+@media screen and (max-width: 747px) {
+    .profile__info {
+        max-width: 282px;
+    }
+}
