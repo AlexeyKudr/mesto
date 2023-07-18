@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width initial-scale=1.0">
         <link rel="stylesheet" href="./pages/index.css">
         <script src="./scripts/index.js" defer></script>
+        <script src="./scripts/add.js" defer></script>
     </head>
     <body class="page">
         <header class="header">
@@ -25,50 +26,7 @@
                 <button id="add-popup-button" type="button" class="profile__add-button"></button>
             </section>
 
-            <section class="cards">
-                <div class="card">
-                    <img src="./images/karachaevo.png" alt="Карачаевск" class="card__image">
-                    <div class="card__info">
-                        <h3 class="card__title">Карачаевск</h3>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/Elbrus.png" alt="Эльбрус" class="card__image">
-                    <div class="card__info">
-                        <h3 class="card__title">Гора Эльбрус</h3>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/dombay.png" alt="Домбай" class="card__image">
-                    <div class="card__info">
-                        <h3 class="card__title">Домбай</h3>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/Elbrus.png" alt="Эльбрус" class="card__image">
-                    <div class="card__info">
-                        <h3 class="card__title">Гора Эльбрус</h3>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/dombay.png" alt="Домбай" class="card__image">
-                    <div class="card__info">
-                        <h3 class="card__title">Домбай</h3>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-                <div class="card">
-                    <img src="./images/karachaevo.png" alt="Карачаево-Ч" class="card__image">
-                    <div class="card__info">
-                        <h3 class="card__title">Карачаево-Черкессия</h3>
-                        <button class="card__like" type="button"></button>
-                    </div>
-                </div>
-            </section>
+            <section class="cards"></section>
         </main>
         <footer class="footer">
             <p class="footer__copyright">© 2020 Mesto Russia</p>
@@ -85,5 +43,36 @@
                 <button id="close-popup-button" class="popup__close-button" type="button"></button>
             </div>
         </div>
+
+        <div id="add-popup" class="popup">
+            <div class="popup__content">
+                <form id="add-form" class="popup__form popup__add-form" name="popup-name-add">
+                    <h2 class="popup__title">Новое место</h2>
+                    <input id="card-input-title" type="text" class="popup__input popup__input_type_title" name="input-add-title" placeholder="Название">
+                    <input id="place-input-subtitle" type="text" class="popup__input popup__input_type_subtitle" name="input-add-subtitle" placeholder="Ссылка на картинку">
+                    <button type="submit" class="popup__button">Сохранить</button>
+                </form>
+                <button id="close-popup-add" class="popup__close-button" type="button"></button>
+            </div>
+        </div>
+
+        <section id="popup-photo" class="popup">
+            <div class="popup__content_image">
+                <button id="close-popup-photo" class="popup__photo-button" type="button"></button>
+                <img class="popup__image-full" src="#" alt="#">
+                <p class="popup__title_image"></p>
+            </div>
+        </section>
+
+        <template id="mesto-card-template" class="card-template">
+            <article class="card">
+                <button class="card__delete" type="button"></button>
+                <img class="card__image" src="#" alt="#">
+                <div class="card__info">
+                    <h2 class="card__title"></h2>
+                    <button class="card__like" type="button"></button>
+                </div>
+            </article>
+        </template>
     </body>
 </html>
