@@ -52,7 +52,7 @@ function createPlace(item) { //создаем элементы карты
   cardImage.alt = item.name;
   const likeEl= newPlace.querySelector('.card__like');
   const popupImage= document.querySelector('.popup__image-full');
-  const popupCaption= document.querySelector('.popup__title_image');
+  const popupCaption= document.querySelector('.popup__name-photo');
   const PopupImg = document.querySelector('#popup-photo'); 
 
   likeEl.addEventListener('click', function(event) {  // добавил слушатель на клик для лайка(меняется цвет)
