@@ -18,3 +18,12 @@
     opacity: 50%;
     cursor: pointer;
 }
+
+@media screen and (max-width: 1024px) {
+    .popup__photo-button {
+        background-size: 20px 20px;
+        width: 20px;
+        height: 20px;
+        right: 0px;
+    }
+}
