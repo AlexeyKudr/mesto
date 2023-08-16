@@ -157,3 +157,27 @@ addFormEl.addEventListener("submit", function (event) {  // по клику и �
   form.reset();
   closePopup(addPopupEl);
 });
+
+// esc закрытие
+const escClose = function (event) {
+  if (event.key === 'Escape') {
+    closePopup(addPopupEl)
+    closePopup(popupImg)
+    closePopup(editPopupEl)
+  }
+};
+
+
+document.addEventListener('keydown', escClose);
+
+const overlayClose= function (event) {
+  if(event.currentTarget === event.target) {
+    closePopup(addPopupEl)
+    closePopup(popupImg)
+    closePopup(editPopupEl)
+  }
+}
+
+addPopupEl.addEventListener('click', overlayClose);
+popupImg.addEventListener('click', overlayClose);
+editPopupEl.addEventListener('click', overlayClose);
