@@ -60,10 +60,12 @@ editFormEl.addEventListener("submit", function (event) {
 
 function openPopup(popupEl) {
   popupEl.classList.add("popup_is-opened");
+  document.addEventListener('keydown', closeByEscape);
 }
 
 function closePopup(popupEl) {
   popupEl.classList.remove("popup_is-opened");
+  document.removeEventListener('keydown', closeByEscape); 
 }
 
 
@@ -76,8 +78,6 @@ const addForm= document.querySelector('#add-form');
 
 
 openAddPopupBtn.addEventListener("click", function () {
-  nameInputEl.value = pageTitleEl.textContent;
-  inputSubTitleEl.value = profileSubTitleEl.textContent;
   openPopup(addPopupEl);
 });
 
@@ -143,41 +143,38 @@ closePopupPhoto.addEventListener('click', function () {
 });
 
 // Логика создание карты после открытого попапа добавления карты, с ссылкой на картинку и заголовком
-addFormEl.addEventListener("submit", function (event) {  // по клику и интеру отправляем сохранение от попапа адд
+addFormEl.addEventListener("submit", function (event) {  // по клику и интеру отправляем сохранение от попапа добавления места
   event.preventDefault(); // по умолчанию никуда не отправлять
 
   const form = event.target;
   const formData = new FormData(form);
   const values = Object.fromEntries(formData);
-
   const inputUrl = values["input-add-subtitle"];
   const inputName = values["input-add-title"];
   const newPlace = createPlace({ name: inputName, link: inputUrl });
   cardsEl.prepend(newPlace);
   form.reset();
+  event.submitter.classList.add('popup__button_disabled')
+  event.submitter.disabled = true;
+  
   closePopup(addPopupEl);
 });
 
+
 // esc закрытие
-const escClose = function (event) {
-  if (event.key === 'Escape') {
-    closePopup(addPopupEl)
-    closePopup(popupImg)
-    closePopup(editPopupEl)
-  }
-};
-
-
-document.addEventListener('keydown', escClose);
-
-const overlayClose= function (event) {
-  if(event.currentTarget === event.target) {
-    closePopup(addPopupEl)
-    closePopup(popupImg)
-    closePopup(editPopupEl)
+function closeByEscape(evt) {
+  if (evt.key === 'Escape') {
+    const openedPopup = document.querySelector('.popup_is-opened');
+  closePopup(openedPopup);
   }
 }
 
-addPopupEl.addEventListener('click', overlayClose);
-popupImg.addEventListener('click', overlayClose);
-editPopupEl.addEventListener('click', overlayClose);
+const overlayClose= function (event) {
+  if(event.currentTarget === event.target) {
+    closePopup(event.target)
+  }
+}
+
+addPopupEl.addEventListener('mousedown', overlayClose);
+popupImg.addEventListener('mousedown', overlayClose);
+editPopupEl.addEventListener('mousedown', overlayClose);

@@ -1,12 +1,4 @@
 
-const validationSettings = {
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__button',
-  inactiveButtonClass: 'popup__button_disabled',
-  inputErrorClass: 'popup__input_type_error',
-  errorClass: 'popup__input_error-message'
-}
 // показывать ошибку
 const showInputError = (form, inputElement, validationSettings) => {
   const errorElement = form.querySelector(`#${inputElement.id}-error`);
@@ -45,15 +37,20 @@ const hasInvalidInput = (inputList) => {
   // состояние кнопки
 const toggleButtonState = (inputList, buttonElement, validationSettings) => {
   if (hasInvalidInput(inputList)) {
+    buttonElement.removeAttribute('disabled');
     buttonElement.classList.add(validationSettings.inactiveButtonClass);
     buttonElement.disabled = true;
+    
   } else {
+    buttonElement.setAttribute('disabled', "");
     buttonElement.classList.remove(validationSettings.inactiveButtonClass);
     buttonElement.disabled = false;
   }
 }
 
-//  проверка формы и кнопки?
+
+
+//  проверка формы и кнопки
 const setEventListeners = (form, validationSettings) => {
   const inputList = Array.from(form.querySelectorAll(validationSettings.inputSelector));
   const submitButton = form.querySelector(validationSettings.submitButtonSelector);
@@ -67,7 +64,7 @@ const setEventListeners = (form, validationSettings) => {
 };
 
 // функциz enableValidation, которая найдёт и переберёт все формы на странице
-const enableValidation = () => {
+const enableValidation = (validationSettings) => {
   const formList = Array.from(document.querySelectorAll(validationSettings.formSelector));
   formList.forEach((form) => {
     setEventListeners(form, validationSettings);
@@ -75,4 +72,11 @@ const enableValidation = () => {
 }
 
  // запускает функцию валидации
-enableValidation (validationSettings);
+enableValidation ({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__input_error-message'
+});
