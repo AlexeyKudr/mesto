@@ -64,7 +64,7 @@ export class FormValidator {
     }
 
     //  проверка формы и кнопки
-    setEventListeners() {
+    _setEventListeners() {
         this._toggleButtonState();
         this._inputList.forEach((inputElement) => {
             inputElement.addEventListener("input", () => {
@@ -79,7 +79,7 @@ export class FormValidator {
         this._formEl.addEventListener("submit", (event) => {
             event.preventDefault();
         });
-        this.setEventListeners();
+        this._setEventListeners();
     }
 }
 

@@ -9,59 +9,55 @@ export class Card {
     }
 
     _getTemplate() {
-        const cardElement = document.querySelector("#mesto-card-template").content.querySelector(".card").cloneNode(true);
+        const cardElement = document.querySelector(this._templateSelector).content.querySelector(".card").cloneNode(true);
 
         return cardElement;
     }
 
-    _generateCard() {
+    generateCard() {
         this._element = this._getTemplate();
         // Добавим данные
-        this._CardImage = this._element.querySelector(".card__image");
-        this._CardTitle = this._element.querySelector(".card__title");
-        this._CardLike = this._element.querySelector(".card__like");
-        this._CardDelete = this._element.querySelector(".card__delete");
-        this._CardImage.src = this._link;
-        this._CardImage.alt = this._name;
-        this._CardTitle.textContent = this._name;
+        this._cardImage = this._element.querySelector(".card__image");
+        this._cardTitle = this._element.querySelector(".card__title");
+        this._cardLike = this._element.querySelector(".card__like");
+        this._cardDelete = this._element.querySelector(".card__delete");
+        this._cardImage.src = this._link;
+        this._cardImage.alt = this._name;
+        this._cardTitle.textContent = this._name;
         this._setEventListeners();
         // Вернём элемент наружу
         return this._element;
     }
 
     _setEventListeners() {
-        this._CardDelete.addEventListener("click", () => {
-            this._deleteCard();
+        this._cardDelete.addEventListener("click", () => {
+            this._onDeleteCard();
         });
 
-        this._CardLike.addEventListener("click", () => {
-            this._LikeClick();
+        this._cardLike.addEventListener("click", () => {
+            this._onLikeClick();
         });
 
-        this._CardImage.addEventListener("click", () => {
+        this._cardImage.addEventListener("click", () => {
             this._handleImage();
         });
     }
 
-    _deleteCard() {
+    _onDeleteCard() {
         this._element.remove();
     }
 
-    _LikeClick() {
-        this._CardLike.classList.toggle("card__like_active");
-    }
-
-    _CardFullImage() {
-        this._element.classList.toggle("popup_is-opened");
+    _onLikeClick() {
+        this._cardLike.classList.toggle("card__like_active");
     }
 
     _handleImage() {
-        const bigPopupImage = popupImg.querySelector(".popup__image-full");
-        const bigPopupTitle = popupImg.querySelector(".popup__name-photo");
+        const fullPopupImg = popupImg.querySelector('.popup__image-full');
+        const fullPopupNamePhoto = popupImg.querySelector('.popup__name-photo');
         openPopup(popupImg);
-        bigPopupTitle.textContent = this._CardTitle.textContent;
-        bigPopupImage.src = this._CardImage.src;
-        bigPopupImage.alt = this._CardImage.alt;
+        fullPopupNamePhoto.textContent = this._name;
+        fullPopupImg.src = this._link;
+        fullPopupImg.alt = this._link;
     }
 }
 
