@@ -19,14 +19,11 @@ export const popupImg = document.querySelector("#popup-photo");
 const closePopupPhoto = document.querySelector("#close-popup-photo");
 
 
-const createCard = () => {
-initialCards.forEach((item) => {
-  // проходимся по карточке
-  const card = new Card(item, ".card-template");
-  const cardElement = card.generateCard();
-  cardsEl.prepend(cardElement); // потом карта встает в начало
-});
+const createCard = (item) => {
+    const card = new Card(item, ".card-template"); 
+    return card.generateCard(); 
 }
+initialCards.forEach(item => {cardsEl.prepend(createCard(item))});
 
 // открытие попапа по нажатию
 openPopupButtonEl.addEventListener("click", function () {
@@ -76,18 +73,14 @@ closeAddPopupBtn.addEventListener("click", function () {
 });
 
 
-
 closePopupPhoto.addEventListener("click", function () {
     closePopup(popupImg);
 });
 
 
 // валидация
-const formList = document.querySelectorAll('.popup__form')
-formList.forEach((formEl) => {
-  const formValidator = new FormValidator (formEl, validationSettings)
-  formValidator.enableValidation()
-});
+const editFormValid = new FormValidator (editFormEl, validationSettings)
+editFormValid.enableValidation()
 const addFormValid = new FormValidator (addFormEl, validationSettings)
 addFormValid.enableValidation()
 
@@ -123,4 +116,4 @@ addPopupEl.addEventListener("mousedown", closeByOverlay);
 popupImg.addEventListener("mousedown", closeByOverlay);
 editPopupEl.addEventListener("mousedown", closeByOverlay);
 
-createCard();
+
