@@ -23,6 +23,17 @@ const createCard = (item) => {
     const card = new Card(item, ".card-template"); 
     return card.generateCard(); 
 }
+
+// Логика создание карты после открытого попапа добавления карты, с ссылкой на картинку и заголовком
+addFormEl.addEventListener("submit", function (event) {
+    // по клику и интеру отправляем сохранение от попапа добавления места
+    event.preventDefault(); // по умолчанию никуда не отправлять
+    cardsEl.prepend(createCard({ name: addInputTit.value, link: addInputSub.value }));
+    addFormEl.reset();
+    addFormValid.disableSubmitButton()
+    closePopup(addPopupEl);
+});
+
 initialCards.forEach(item => {cardsEl.prepend(createCard(item))});
 
 // открытие попапа по нажатию
@@ -85,17 +96,7 @@ const addFormValid = new FormValidator (addFormEl, validationSettings)
 addFormValid.enableValidation()
 
 
-// Логика создание карты после открытого попапа добавления карты, с ссылкой на картинку и заголовком
-addFormEl.addEventListener("submit", function (event) {
-    // по клику и интеру отправляем сохранение от попапа добавления места
-    event.preventDefault(); // по умолчанию никуда не отправлять
-    const newCard = new Card({ name: addInputTit.value, link: addInputSub.value }, "#mesto-card-template");
-    const cardElement = newCard.generateCard();
-    cardsEl.prepend(cardElement);
-    addFormEl.reset();
-    addFormValid.disableSubmitButton()
-    closePopup(addPopupEl);
-});
+
 
 // esc закрытие
 function closeByEscape(evt) {
