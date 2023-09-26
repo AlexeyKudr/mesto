@@ -1,11 +1,11 @@
-import { Card } from "./scripts/Card.js";
-import { FormValidator } from "./scripts/FormValidator.js";
-import { validationSettings, initialCards, pageTitleEl, nameInputEl, editFormEl, inputSubTitleEl, profileSubTitleEl, cardsEl, addFormEl, addInputTit, addInputSub, openAddPopupBtn, btnProfile } from "./utils/constants.js";
-import Section from "./scripts/Section.js";
-import PopupWithImage from "./scripts/PopupWithImage.js";
-import UserInfo from "./scripts/UserInfo.js";
-import PopupWithForm from "./scripts/PopupWithForm.js";
-import "./pages/index.css";
+import { Card } from "../scripts/Card.js";
+import { FormValidator } from "../scripts/FormValidator.js";
+import { validationSettings, initialCards, pageTitleEl, nameInputEl, editFormEl, inputSubTitleEl, profileSubTitleEl, cardsEl, addFormEl, addInputTit, addInputSub, openAddPopupBtn, btnProfile } from "../utils/constants.js";
+import Section from "../scripts/Section.js";
+import PopupWithImage from "../scripts/PopupWithImage.js";
+import UserInfo from "../scripts/UserInfo.js";
+import PopupWithForm from "../scripts/PopupWithForm.js";
+import "./index.css";
 
 // класс Card
 const createCard = (item) => {

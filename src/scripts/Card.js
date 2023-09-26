@@ -43,6 +43,7 @@ export class Card {
 
     _onDeleteCard() {
         this._element.remove();
+        this._element= null;
     }
 
     _onLikeClick() {
