@@ -8,23 +8,7 @@ import PopupWithForm from "../scripts/PopupWithForm.js";
 import Api from "../scripts/Api.js";
 import PopupWithConfirmation from "../scripts/PopupWithConfirmation.js";
 import "./index.css";
-
-// класс Card
-const createCard = (data) => {
-    const card = new Card(data, ".card-template", handleCardClick);
-    return card.generateCard();
-};
-
-// класс Section
-const cardsList = new Section(
-    {
-        renderer: (item) => {
-            const cardElement = createCard(item, ".card-template", handleCardClick);
-            cardsList.addItem(cardElement);
-        },
-    },
-    ".cards"
-);
+let userId;
 
 // валидация
 const editFormValid = new FormValidator(editFormEl, validationSettings);
@@ -65,6 +49,7 @@ const user = new UserInfo({
     avatar: avatar
 });
 
+// экземпляр общий Api
 const api = new Api({
     url: 'https://mesto.nomoreparties.co/v1/cohort-76',
     headers: {
@@ -73,23 +58,16 @@ const api = new Api({
     }
   });
 
-api.getInitialCards()
-.then(cardsArr => {
-    cardsList.renderItems(cardsArr)
-})
-.catch(err => {
-    console.error(err);
+  // загрузка карточек и редактирования профиля
+  Promise.all([api.getInitialCards(), api.getUserInfo()])
+  .then(([cardsArr, userData]) => {
+    user.setUserInfo(userData);
+    userId = userData._id;
+    cardsList.renderItems(cardsArr);
+  })
+  .catch((err) => {
+    console.log(`Ошибка: ${err}`);
   });
-
-api.getUserInfo()
-.then(item => {
-    user.setUserInfo(item);
-})
-.catch(err => {
-    console.error(err);
-  });
-
-
 
 // форма редактирования профиля edit
 const popupEditForm = new PopupWithForm({
@@ -106,7 +84,6 @@ const popupEditForm = new PopupWithForm({
         popupEditForm.close();
     },
 });
-
 btnProfile.addEventListener("click", () => {
     const userData = user.getUserInfo();
     nameInputEl.value = userData.name;
@@ -115,27 +92,47 @@ btnProfile.addEventListener("click", () => {
 });
 popupEditForm.setEventListeners();
 
-// // форма создания карточек Add
-// const popupAddForm = new PopupWithForm({
-//     popupSelector: "#add-popup",
-//     submitForm: (formData) => {
-//         api.addNewCard(formData)
-//         .then ((formData) => {
-//             cardsList.addItem(createCard(formData));
-//         popupAddForm.close();
-//     })
-//     .catch((err) => {
-//         console.log(`Ошибка: ${err}`);
-// })
-//     }
-// });
 
-// openAddPopupBtn.addEventListener("click", () => {
-//     addFormValid.disableSubmitButton();
-//     popupAddForm.open();
-// });
-// popupAddForm.setEventListeners();
+// создание карточек
+const createCard = (data) => {
+  const card = new Card (
+    data,".card-template", 
+    handleCardClick,
+  )
+  return card.generateCard()
+  
+}
+
+// класс Section
+const cardsList = new Section(
+    {
+        renderer: (item) => {
+            cardsList.addItemAppend(createCard(item));
+        },
+    },
+    ".cards"
+);
+ 
+
+// форма создания карточек Add
+const popupAddForm = new PopupWithForm({
+  popupSelector: "#add-popup",
+  submitForm: (formData) => {
+      api.addNewCard(formData)
+      .then((formData) => {
+      cardsList.addItemPrepend(createCard(formData));
+      popupAddForm.close();
+  })
+  .catch((err) => {
+      console.log(`Ошибка: ${err}`);
+})
+  }
+});
+console.log(api.addNewCard);
 
 
-
-
+openAddPopupBtn.addEventListener("click", () => {
+  addFormValid.disableSubmitButton();
+  popupAddForm.open();
+});
+popupAddForm.setEventListeners();

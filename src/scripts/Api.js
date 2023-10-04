@@ -62,6 +62,7 @@ export default class Api {
             name: data.name,
             link: data.link,
           }),
-        }).then(this._getResponse);
+        })
+        .then(this._getResponse);
       }
   }
