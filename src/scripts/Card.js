@@ -1,9 +1,11 @@
-export class Card {
-    constructor(data, templateSelector, handleCardClick) {
+export default class Card {
+    constructor(data, templateSelector, handleCardClick, userId) {
         this._name = data.name;
         this._link = data.link;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
+        this._userId= userId;
+        this._likes = data.likes;
     }
 
     _getTemplate() {
@@ -49,6 +51,12 @@ export class Card {
     _onLikeClick() {
         this._cardLike.classList.toggle("card__like_active");
     }
+
+    _handleLikeCard(data) {
+        this._likes = data.likes;
+        this._likesNumber.textContent = this._likes.length;
+        this._likeBtn.classList.toggle('element__like-btn_active');
+      }
 
 }
 

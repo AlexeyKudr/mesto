@@ -1,0 +1,12 @@
+1/ GET https://nomoreparties.co/v1/cohortId/users/me 
+Информация о пользователе должна подгружаться с сервера. Чтобы осуществить это, сделайте GET-запрос на URL (cohortId замените на идентификатор вашей группы):
+
+2/ GET https://mesto.nomoreparties.co/v1/cohortId/cards
+Начальные карточки должны подгружаться с сервера. Для этого сделайте GET-запрос:
+
+3/ PATCH https://mesto.nomoreparties.co/v1/cohortId/users/me
+Отредактированные данные профиля должны сохраняться на сервере. Для этого отправьте запрос методом PATCH:
+
+4/POST https://mesto.nomoreparties.co/v1/cohortId/cards
+Чтобы добавить на сервер новую карточку, отправьте POST-запрос:
+
