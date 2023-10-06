@@ -1,6 +1,6 @@
 import Card from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
-import { validationSettings, pageTitleEl, nameInputEl, editFormEl, submitBtn, inputSubTitleEl, profileSubTitleEl, cardsEl, addFormEl, addInputTit, addInputSub, openAddPopupBtn, btnProfile, openBtnAvatar, avatarFormEl, avatar } from "../utils/constants.js";
+import { validationSettings, pageTitleEl, nameInputEl, editFormEl, inputSubTitleEl, profileSubTitleEl, addFormEl, openAddPopupBtn, btnProfile, openBtnAvatar, avatarFormEl, avatar } from "../utils/constants.js";
 import Section from "../scripts/Section.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
 import UserInfo from "../scripts/UserInfo.js";
@@ -26,7 +26,6 @@ const cardsList = new Section(
       },
   },".cards"
 );
-
 
 // форма создания карточек Add
 const popupAddForm = new PopupWithForm({
@@ -183,12 +182,5 @@ const createCard = (data) => {
   });
   
   return card.generateCard();
-
-
-
-
-
-
-
 };
 
