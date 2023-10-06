@@ -22,3 +22,4 @@ export const btnProfile = document.querySelector(".profile__edit-button")
 export const openBtnAvatar = document.querySelector(".profile__avatar_edit")
 export const avatarFormEl = document.querySelector("#avatar-popup");
 export const avatar = document.querySelector('.profile__avatar');
+export const submitBtn = document.querySelector('.popup__button');

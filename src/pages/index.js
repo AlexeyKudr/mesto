@@ -1,6 +1,6 @@
 import Card from "../scripts/Card.js";
 import { FormValidator } from "../scripts/FormValidator.js";
-import { validationSettings, pageTitleEl, nameInputEl, editFormEl, inputSubTitleEl, profileSubTitleEl, cardsEl, addFormEl, addInputTit, addInputSub, openAddPopupBtn, btnProfile, openBtnAvatar, avatarFormEl, avatar } from "../utils/constants.js";
+import { validationSettings, pageTitleEl, nameInputEl, editFormEl, submitBtn, inputSubTitleEl, profileSubTitleEl, cardsEl, addFormEl, addInputTit, addInputSub, openAddPopupBtn, btnProfile, openBtnAvatar, avatarFormEl, avatar } from "../utils/constants.js";
 import Section from "../scripts/Section.js";
 import PopupWithImage from "../scripts/PopupWithImage.js";
 import UserInfo from "../scripts/UserInfo.js";
@@ -32,6 +32,7 @@ const cardsList = new Section(
 const popupAddForm = new PopupWithForm({
 popupSelector: "#add-popup",
 submitForm: (formData) => {
+  popupAddForm.save();
     api.addNewCard(formData)
     .then((formData) => {
     cardsList.addItemPrepend(createCard(formData));
@@ -40,9 +41,11 @@ submitForm: (formData) => {
 .catch(err => {
   console.error(err);
 })
+.finally(() => {
+  popupAddForm.return();
+});
 }
 });
-
 
 openAddPopupBtn.addEventListener("click", () => {
 addFormValid.disableSubmitButton();
@@ -61,11 +64,18 @@ function handleCardClick(name, link) {
 const popupEditAvatar = new PopupWithForm({
     popupSelector: ".popup__avatar",
     submitForm: (data) => {
+      popupEditAvatar.save()
         api.changeAvatar(data)
           .then((data) => {
             avatar.src = data.avatar;
             popupEditAvatar.close();
           })
+          .catch(err => {
+            console.error(err);
+          })
+          .finally(() => {
+            popupEditAvatar.return()
+          });
       }
 });
   openBtnAvatar.addEventListener("click", () => {
@@ -105,14 +115,17 @@ const api = new Api({
 const popupEditForm = new PopupWithForm({
     popupSelector: "#edit-popup",
     submitForm: (item) => {
+      popupEditForm.save();
         api.editUserInfo(item)
         .then((item) => {
           user.setUserInfo(item);
         })
         .catch(err => {
           console.error(err);
+        })
+        .finally(() => {
+          popupEditForm.return();
         });
-        user.setUserInfo(item);
         popupEditForm.close();
     },
 });
@@ -170,6 +183,12 @@ const createCard = (data) => {
   });
   
   return card.generateCard();
+
+
+
+
+
+
+
 };
 
-console.log(deletePopup)
