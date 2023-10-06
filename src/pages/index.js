@@ -61,7 +61,7 @@ function handleCardClick(name, link) {
 
 // открытие Аватарки
 const popupEditAvatar = new PopupWithForm({
-    popupSelector: ".popup__edit-avatar",
+    popupSelector: ".popup_avatar",
     submitForm: (data) => {
       popupEditAvatar.save()
         api.changeAvatar(data)
