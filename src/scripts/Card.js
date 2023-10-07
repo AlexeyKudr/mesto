@@ -18,7 +18,7 @@ export default class Card {
         return cardElement;
     }
 
-    _onDeleteCard() {
+    onDeleteCard() {
         this._element.remove();
         this._element= null;
     }

@@ -65,8 +65,8 @@ const popupEditAvatar = new PopupWithForm({
     submitForm: (data) => {
       popupEditAvatar.save()
         api.changeAvatar(data)
-          .then((data) => {
-            avatar.src = data.avatar;
+          .then((userData) => {
+            user.setUserInfo(userData);
             popupEditAvatar.close();
           })
           .catch(err => {
@@ -118,6 +118,7 @@ const popupEditForm = new PopupWithForm({
         api.editUserInfo(item)
         .then((item) => {
           user.setUserInfo(item);
+          popupEditForm.close();
         })
         .catch(err => {
           console.error(err);
@@ -125,7 +126,6 @@ const popupEditForm = new PopupWithForm({
         .finally(() => {
           popupEditForm.return();
         });
-        popupEditForm.close();
     },
 });
 btnProfile.addEventListener("click", () => {
@@ -172,7 +172,7 @@ const createCard = (data) => {
         api.deleteCard(cardId)
           .then(() => {
             deletePopup.close();
-            card._onDeleteCard();
+            card.onDeleteCard();
           })
           .catch(err => {
             console.error(err);
